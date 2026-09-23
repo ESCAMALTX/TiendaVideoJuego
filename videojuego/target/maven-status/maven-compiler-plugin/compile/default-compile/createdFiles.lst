@@ -1,0 +1,6 @@
+Tiendavideojuego\videojuego\servicio\VideojuegoServicio.class
+Tiendavideojuego\videojuego\modelo\Videojuego.class
+Tiendavideojuego\videojuego\repositorio\VideojuegoRepositorio.class
+Tiendavideojuego\videojuego\VideojuegoApplication.class
+Tiendavideojuego\videojuego\config\DatosIniciales.class
+Tiendavideojuego\videojuego\controlador\ListadoController.class

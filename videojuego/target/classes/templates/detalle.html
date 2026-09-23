@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/vendor/bootstrap.min.css">
+    <title>TIENDA VIDEOJUEGOS</title>
+
+    <style>
+        body {
+            background-color: #f4f5fb;
+        }
+
+        /* Imagen de la ficha */
+        .detalle-img {
+            width: 100%;
+            height: 380px;
+            object-fit: contain;
+            background-color: #eceef5;
+            border-radius: .5rem;
+        }
+
+        /* Etiqueta del genero */
+        .etiqueta {
+            display: inline-block;
+            background-color: #212529;
+            color: #fff;
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            padding: .3rem .7rem;
+            border-radius: 999px;
+        }
+
+        /* Cada dato de la ficha tecnica */
+        .dato {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: .6rem 0;
+            border-bottom: 1px solid #e9ecef;
+            font-size: .94rem;
+        }
+
+        .dato:last-child {
+            border-bottom: none;
+        }
+
+        .dato .clave {
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+        .dato .valor {
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* Numero de puntuacion destacado */
+        .nota {
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== BARRA SUPERIOR ==================== -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="/img/logo.png" width="30" height="30" alt="">
+            TIENDA VIDEOJUEGOS
+        </a>
+        <a class="btn btn-outline-light btn-sm" href="/">
+            Volver al listado
+        </a>
+    </div>
+</nav>
+
+<!-- ==================== FICHA DEL VIDEOJUEGO ==================== -->
+<main class="container my-4 my-lg-5">
+    <div class="row g-4 justify-content-center">
+
+        <!-- Columna izquierda: imagen, precio y boton de compra -->
+        <div class="col-12 col-md-5 col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+
+                    <img id="imagen" src="" class="detalle-img mb-3" alt="">
+
+                    <p class="h4 mb-1 text-center">$<span id="precio"></span></p>
+                    <p class="text-center text-muted small mb-3">
+                        <span id="stock"></span> unidades disponibles
+                    </p>
+
+                    <button class="btn btn-primary w-100" type="button" id="botonComprar">
+                        Anadir al carrito
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna derecha: informacion del juego -->
+        <div class="col-12 col-md-7 col-lg-7">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4">
+
+                    <span class="etiqueta" id="genero"></span>
+
+                    <h1 class="h2 fw-bold mt-3 mb-2" id="nombre"></h1>
+
+                    <p class="text-muted mb-4">
+                        <span id="plataforma"></span> &middot; <span id="anio"></span>
+                    </p>
+
+                    <h2 class="h6 text-uppercase text-muted fw-bold mb-2">
+                        Descripcion
+                    </h2>
+                    <p id="descripcion" class="mb-4"></p>
+
+                    <h2 class="h6 text-uppercase text-muted fw-bold mb-2">
+                        Ficha tecnica
+                    </h2>
+
+                    <div class="dato">
+                        <span class="clave">Desarrollador</span>
+                        <span class="valor" id="desarrollador"></span>
+                    </div>
+                    <div class="dato">
+                        <span class="clave">Genero</span>
+                        <span class="valor" id="generoTexto"></span>
+                    </div>
+                    <div class="dato">
+                        <span class="clave">Plataformas</span>
+                        <span class="valor" id="plataformaTexto"></span>
+                    </div>
+                    <div class="dato">
+                        <span class="clave">Lanzamiento</span>
+                        <span class="valor" id="anioTexto"></span>
+                    </div>
+                    <div class="dato">
+                        <span class="clave">Puntuacion</span>
+                        <span class="valor">
+                            <span class="nota" id="puntuacion"></span>
+                            <span class="text-muted fw-normal">/ 10</span>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+
+<script src="/js/detalle.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/vendor/bootstrap.min.css">
+    <title>TIENDA VIDEOJUEGOS</title>
+
+    <style>
+        /* Efecto suave cuando el mouse pasa por encima de la card */
+        .card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Las 6 cards por fila son angostas: la imagen se recorta
+           a una altura fija para que todas se vean parejas */
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* El texto se limita a 6 lineas para no estirar la card */
+        .card-text {
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-size: .875rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== BARRA SUPERIOR ==================== -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="/img/logo.png" width="30" height="30" alt="">
+            TIENDA VIDEOJUEGOS
+        </a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1 class="my-3">Bienvenido a la Tienda</h1>
+
+    <!-- Buscador: manda el texto al servidor, que filtra en MySQL -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <form id="formBuscador" method="get" action="/">
+                <div class="input-group">
+                    <input type="search" id="buscador" name="q" class="form-control"
+                           placeholder="Buscar videojuego..." autocomplete="off"
+                           th:value="${q}">
+                    <button class="btn btn-dark" type="submit">Buscar</button>
+                    <a class="btn btn-outline-secondary" href="/">Limpiar</a>
+                </div>
+            </form>
+            <small class="text-muted">
+                <span th:text="${total}">0</span> videojuego(s) encontrado(s)
+            </small>
+        </div>
+    </div>
+
+    <!-- ==================== CARDS DESDE MySQL ==================== -->
+    <div class="row" id="listaVideojuegos">
+
+        <div class="col-6 col-md-4 col-xl-2" th:each="v : ${videojuegos}">
+            <div class="card" th:attr="data-buscable=${v.nombre}">
+                <img class="card-img-top" th:src="${v.imagen}" th:alt="${v.nombre}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${v.nombre}">Nombre</h5>
+                    <p class="card-text" th:text="${v.descripcion}">Descripcion</p>
+                    <a class="btn btn-primary"
+                       th:href="@{/detalle(juego=${v.clave})}">Ver detalles</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Mensaje cuando la busqueda no encuentra nada -->
+    <div class="alert alert-warning" th:if="${total == 0}">
+        No se encontro ningun videojuego con ese nombre.
+    </div>
+
+</div>
+
+<script src="/js/buscador.js"></script>
+
+</body>
+</html>
